@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_01_021340) do
+ActiveRecord::Schema.define(version: 2022_05_01_104246) do
 
   create_table "flags", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "output_id"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 2022_05_01_021340) do
     t.date "releaseDate"
     t.string "password_digest"
     t.string "email"
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
   add_foreign_key "flags", "outputs"
