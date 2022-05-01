@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'tops#show'
-  ##shallow do
+  get '/signup', to: 'users#new'
     resources :users do
       resources :projects 
       resources :work_targets 

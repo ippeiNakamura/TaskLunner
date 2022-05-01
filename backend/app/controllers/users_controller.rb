@@ -3,16 +3,25 @@ class UsersController < ApplicationController
     
   end
   def new
+    @user = User.new
   end
 
   def create
+    @user = User.new(user_params)
+    if @user.save
+      flash[:success] = "新規登録が完了しました"
+      redirect_to root_path
+    else
+      flash[:danger] = "新規登録が失敗しました"
+      render 'signup'
+    end
   end
 
   def edit
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = User.new(params[:id])
     @user.assign_attributes({releaseDate: params[:user][:releaseDate]})
     if @user.save
       flash[:notice] =  'リリース日を更新しました'
@@ -30,4 +39,10 @@ class UsersController < ApplicationController
 
   def destroy
   end
+
+  private
+
+    def user_params
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    end
 end

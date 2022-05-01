@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_05_000515) do
+ActiveRecord::Schema.define(version: 2022_05_01_021340) do
 
   create_table "flags", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "output_id"
@@ -63,10 +63,11 @@ ActiveRecord::Schema.define(version: 2021_12_05_000515) do
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
-    t.string "password"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.date "releaseDate"
+    t.string "password_digest"
+    t.string "email"
   end
 
   add_foreign_key "flags", "outputs"
