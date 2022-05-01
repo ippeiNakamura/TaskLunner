@@ -13,23 +13,17 @@
             <th>削除</th>
         </tr>
         
-        
         <% tasks.each do |task| %>
-            
-            <%= form_for [user,project,work_target,flag,task] do |f| %> 
+            <%= form_with model: [user,task] do |f| %> 
                 <tr>
                     <td><%= task.id %></td>
                     <td><%= f.text_field :name %></td>
-                    <td></td>
-                    <% if task.children.count >= 1 %>
-                        <td><%= link_to 'あり', user_project_work_target_flag_tasks_path(user,project,work_target,flag,task) %></td>
-                        <td><%= task.descendants.sum(:assumptionCost) %></td>
-                    <% else %>
-                        <td><%= link_to 'なし', user_project_work_target_flag_tasks_path(user,project,work_target,flag,task) %></td>
-                        <td><%= f.number_field :assumptionCost,step: "0.25"%></td>
-                    <% end %>
+                    <td><%= f.text_field :status %></td>
+                    <td><%= link_to '追加', new_user_task_path(user,task) %></td>
+                    <td><%= f.number_field :assumptionCost,step: "0.25"%></td>
                     <td></td>
                     <td><%= f.text_area :memo %></td>
+
                     <td><%= f.submit "更新"%></></td>
                     <td>
                         <%= link_to [user,project,work_target,flag,task],method: :delete,data:{confirm:"本当に削除しますか？"} do %>

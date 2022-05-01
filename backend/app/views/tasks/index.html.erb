@@ -1,10 +1,23 @@
-<h1><%= @title %></h1>
-<%= link_to  @task_category + "の追加", new_flag_task_path(@flag,@task) %>
-<p>想定総工数：<%= @assumptionTotalCost %></p>
-<p>想定日数：<%= @assumptionday %></p>
-<p>完了予定日：<%= l @completionDate %></p>
-<p>納品予定日：<%= l @releaseDate %></p>
-<p>進捗：<%= @progress %></p>
+<h1>タスク一覧</h1>
+<%= link_to "タスクの追加", new_user_task_path(@user) %>
+<div class="status" >
+    <p>合計工数：<%= @assumptionTotalCost %></p>
+
+    <p>残タスク工数：<%= @uncompleteTaskCost %></p>
+    <p>想定日数：<%= @assumptionday %></p>
+    <p>着地予定日：<%= l @finishDay %></p>
+    <p>スタート日：<%= l @startDay %></p>
+    
+    <%= form_with model:@user do |f| %>
+        <p>リリース予定日：<%= f.date_field :releaseDate,value: @releaseDate %><%= f.submit "更新"%></p>
+    <% end %>
+    <p>残日数：<%= @limitDate %></p>
+    <p>１日当たりの予定進捗工数：<%= @per1DayScheduleProgress %></p>
+    <p>今日までの予定進捗工数：<%= @scheduleProgress %></p>
+    <p>現時点の完了タスク合計：<%= @completeTaskCost %></p>
+    
+    <p>進捗：<%= @progress %></p>
+</div>
 <%= render  partial: "task_edit_table", locals:{
     user: @user,
     project: @project,

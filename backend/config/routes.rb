@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :users do
       resources :projects 
       resources :work_targets 
-      resources :flags 
+      resources :flags
       resources :tasks 
       resources :schedules do
       collection do

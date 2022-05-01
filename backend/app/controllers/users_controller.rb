@@ -12,6 +12,14 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user = User.find(params[:id])
+    @user.assign_attributes({releaseDate: params[:user][:releaseDate]})
+    if @user.save
+      flash[:notice] =  'リリース日を更新しました'
+    else
+      flash[:alert] =  'リリースを更新できませんでした'
+    end
+    redirect_to request.referer
   end
 
   def show

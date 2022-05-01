@@ -10,17 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_28_025123) do
+ActiveRecord::Schema.define(version: 2021_12_05_000515) do
 
-  create_table "flags", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "flags", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "output_id"
     t.string "name"
+    t.date "targetDay"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["output_id"], name: "index_flags_on_output_id"
   end
 
-  create_table "outputs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "outputs", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "project_id"
     t.string "name"
     t.time "releaseDay"
@@ -29,7 +30,7 @@ ActiveRecord::Schema.define(version: 2021_08_28_025123) do
     t.index ["project_id"], name: "index_outputs_on_project_id"
   end
 
-  create_table "projects", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "projects", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "user_id"
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -37,7 +38,7 @@ ActiveRecord::Schema.define(version: 2021_08_28_025123) do
     t.index ["user_id"], name: "index_projects_on_user_id"
   end
 
-  create_table "tasks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "tasks", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "flag_id"
     t.string "name"
     t.string "status"
@@ -52,6 +53,7 @@ ActiveRecord::Schema.define(version: 2021_08_28_025123) do
     t.integer "rgt"
     t.integer "depth"
     t.integer "children_count"
+    t.string "assumptionCostTimeFomrat"
     t.index ["depth"], name: "index_tasks_on_depth"
     t.index ["flag_id"], name: "index_tasks_on_flag_id"
     t.index ["lft"], name: "index_tasks_on_lft"
@@ -59,11 +61,12 @@ ActiveRecord::Schema.define(version: 2021_08_28_025123) do
     t.index ["rgt"], name: "index_tasks_on_rgt"
   end
 
-  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "mail"
+  create_table "users", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
     t.string "password"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.date "releaseDate"
   end
 
   add_foreign_key "flags", "outputs"

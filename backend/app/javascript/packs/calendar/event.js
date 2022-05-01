@@ -1,13 +1,12 @@
-//インストールしたファイルたちを呼び出します。
 import { Calendar, computeShrinkWidth } from '@fullcalendar/core';
+//インストールしたファイルたちを呼び出します。
 import interactionPlugin,{ Draggable } from '@fullcalendar/interaction';
 import monthGridPlugin　from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid';
 import { getJSON } from 'jquery';
+//import { get } from 'core-js/core/dict';
 
-var task = $('#mydraggable').data('t-id')
-var taskName = task.Name
-var taskTime = task.assumptionCost
+
 var insertHTML = ''
 
 //optionタグの初期化
@@ -101,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var draggableEl = document.getElementById('mydraggable'); //ドラッグ&ドロップ用の要素
     var calendarEl = document.getElementById('calendar');　//カレンダー用の要素
     
-    //カレンダーの中身を設定(月表示とか、クリックアクション起こしたいとか、googleCalendar使うととか)
+    //カレンダーの中身を設定(月表示とか、クリックアクション起こしたいとか、googleCalendar使うとか)
     var calendar = new Calendar(calendarEl, {
         plugins: [monthGridPlugin, timeGridPlugin, interactionPlugin],
         droppable: true,
@@ -121,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
         expandRows: true,
         stickyHeaderDates: true,
-        buttonText: {
+            buttonText: {
             today: '今日'
         },
         allDayText: '終日',
@@ -131,7 +130,12 @@ document.addEventListener('DOMContentLoaded', function () {
             //日付をクリックしたときのイベント(詳しくは次回の記事へ)
         },
         eventClick: function (info) {
-            //表示されたイベントをクリックしたときのイベント(詳しくは次回の記事へ)
+            //表示されたイベントをクリックしたときのイベント
+                //jsの変数を、railsのコントローラーに渡す
+            $('#modalTitle').html(info.event.title); // モーダルのタイトルをセット
+            console.log(info.event)
+            document.getElementById('modalArea').style.display = 'block';
+            //tasks#updateにタスクIDと””
         },
         eventClassNames: function (arg) {
             //表示されたイベントにclassをcss用に追加する(詳しくは次回の記事へ)
@@ -141,23 +145,18 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log('date')
             //draggableEl.style.display = "none";
         },
-        drop: function(allDay) {
-            //ドラッグ完了時の処理****
-            if (allDay) {
-                alert('test')
-                draggableEl.style.display = "none"
-            }
-            //draggableEl.style.display = "none";
+        drop: function(dropInfo) {
+            //ドラッグ完了時の処理
+            var taskId = dropInfo.draggedEl.id //タスクIDを保持
+            console.log(dropInfo.dateStr)
+            $(dropInfo.draggedEl).remove() //ドラッグした要素を除去
         }
     });
-    //カレンダー外のドラッグ&ドロップ要素の設定
-    new Draggable(draggableEl, {
-        eventData: {
-            title: taskName,
-            duration: taskTime,
-        },
-    });
-
+    
     //カレンダー表示    
     calendar.render();
+    //タスクリスト内の各タスクをドラッグ&ドロップできるよう設定
+    new Draggable(draggableEl, {
+            itemSelector: '.item-class',
+        })
 });

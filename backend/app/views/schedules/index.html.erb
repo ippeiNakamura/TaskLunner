@@ -1,13 +1,15 @@
 <%# タイトル %>
-    <h1><%= @title %></h1>
+    <h1>スケジューリング</h1>
+<%# 進捗 %>
+    <p>完了タスク：<%= @completedTaskRatio.to_s + "％" %></p>
 <%# タスクバー %>
     <div id='task-bar'>
         <div class="listing-product-detail__category">
             <%# プロジェクトのセレクトボックス %>
             <div id='parent-select-wrapper'>
-                <%= form_for @user do |f| %>
+                <%= form_with model:@user do |f| %>
                     <%= label_tag :parent_category, "プロジェクト：" %>
-                    <%= f.select :project_ids,@projects.map{|project| [project.name,project.id]},{},id:'parent_category' %>
+                    <%# f.select :project_ids,@projects.map{|project| [project.name,project.id]},{},id:'parent_category' %>
                 <% end %>
             </div>
             <%# 作業対象のセレクトボックス %>
@@ -24,40 +26,58 @@
                     <option value="---">---</option>
                 </select>
             </div>
-            
+        
         <div id='unassigned-tasks'>
             <div id='unassigned-tasks-list'>
                 <h4>タスク</h4>
-                    <% @tasks.each do |t| %>
-                    <div id='mydraggable' data-t-id=<% t.to_json %>>
-                        <%= t.name %>
-                    </div> 
-                    <% end %>
+                <div id='mydraggable' >
+                    <ol>
+                        <% boforeLevel = 0 %>
+                        <% Task.each_with_level(Task.roots) do |root| %>
+                                <% Task.each_with_level(root.self_and_descendants) do |t| %>
+                                    
+                                    <% if t.level < boforeLevel %>
+                                        <% (boforeLevel - t.level).times do %>
+                                            </ol>
+                                            </li>
+                                        <% end %>
+                                    <% else %>
+                                    
+                                    <% end %>
+
+                                    <li class='item-class' id="<%= t.id %>" data-event='{ "title": "<%= t.name %>", "duration": "<%= t.assumptionCostTimeFomrat %>" }'><%= t.name %>
+                                    
+                                    <% if t.rgt - t.lft > 1 %>
+                                        <ol>
+                                    <% else %>
+                                        </li>
+                                    <% end %>
+
+                                    <% boforeLevel = t.level %>
+                                <% end %>
+                        
+                            <% end %>
+                    </ol>
+                </div>
             </div>
          </div>
     </div>
 <%# カレンダー %>
     <%= javascript_pack_tag 'calendar/event' %>
     <div id='calendar'></div>
-<!-- モーダルボタン -->
-    <a href="#modal">モーダルボタン</a>
     
-    <!-- モーダルに出てくる内容 -->
-    <div class="remodal" data-remodal-id="modal">
-        <form action="">
-            <label for="">タスク：</label>
-            <%= button_to '選択する',user_project_work_target_flag_tasks_path,method: :get  %>
-            <label for="">開始時刻:</label>
-            <input type="time">
-
-            <label for="">終了時刻:</label>
-            <input type="time">
-        </form>
-        <!-- クローズボタン -->
-        <button data-remodal-action="close" class="remodal-close"></button>
-    
-    </div>
+<%# モーダルウィンドウ %>
+    <section id="modalArea" class="modalArea">
+        <div id="modalBg" class="modalBg"></div>
+        <div class="modalWrapper">
+            
+            <div class="modalContents">
+                <p><%= @id %></p>
+                <button>完了</button>
+            </div>
+            <div id="closeModal" class="closeModal">
+            </div>
+        </div>
+    </section>
 </div>
-
-
 
