@@ -73,5 +73,21 @@ RSpec.describe User, type: :model do
       end
 
    end
-   
+
+   describe "password・password_confirmationカラム" do
+      context '5文字の場合' do
+         it '無効であること' do
+            user.password =user.password_confirmation = "a" * 5
+            expect(user).to be_invalid
+         end
+      end
+      context '空白文字が6文字の場合' do
+         it '無効であること' do
+            user.password =user.password_confirmation = "　" * 6
+            expect(user).to be_invalid
+         end
+      end 
+
+   end
+
 end

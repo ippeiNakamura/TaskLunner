@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       redirect_to root_path
     else
       flash[:danger] = "新規登録が失敗しました"
-      render 'signup'
+      render 'new'
     end
   end
 
