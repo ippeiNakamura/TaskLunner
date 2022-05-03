@@ -12,7 +12,6 @@ class UsersController < ApplicationController
       flash[:success] = "新規登録が完了しました"
       redirect_to root_path
     else
-      flash[:danger] = "新規登録が失敗しました"
       render 'new'
     end
   end

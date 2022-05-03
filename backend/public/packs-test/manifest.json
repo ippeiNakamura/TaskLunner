@@ -1,8 +1,8 @@
 {
   "application.js": "/packs-test/js/application-ad07f030aac4bdf48c12.js",
   "application.js.map": "/packs-test/js/application-ad07f030aac4bdf48c12.js.map",
-  "calendar/event.js": "/packs-test/js/calendar/event-d51b90c7344b20522e1a.js",
-  "calendar/event.js.map": "/packs-test/js/calendar/event-d51b90c7344b20522e1a.js.map",
+  "calendar/event.js": "/packs-test/js/calendar/event-d8f568aaafa8f8862b33.js",
+  "calendar/event.js.map": "/packs-test/js/calendar/event-d8f568aaafa8f8862b33.js.map",
   "entrypoints": {
     "application": {
       "js": [
@@ -14,11 +14,21 @@
     },
     "calendar/event": {
       "js": [
-        "/packs-test/js/calendar/event-d51b90c7344b20522e1a.js"
+        "/packs-test/js/calendar/event-d8f568aaafa8f8862b33.js"
       ],
       "js.map": [
-        "/packs-test/js/calendar/event-d51b90c7344b20522e1a.js.map"
+        "/packs-test/js/calendar/event-d8f568aaafa8f8862b33.js.map"
+      ]
+    },
+    "hello_vue": {
+      "js": [
+        "/packs-test/js/hello_vue-021df1626eb998a9318a.js"
+      ],
+      "js.map": [
+        "/packs-test/js/hello_vue-021df1626eb998a9318a.js.map"
       ]
     }
-  }
+  },
+  "hello_vue.js": "/packs-test/js/hello_vue-021df1626eb998a9318a.js",
+  "hello_vue.js.map": "/packs-test/js/hello_vue-021df1626eb998a9318a.js.map"
 }
