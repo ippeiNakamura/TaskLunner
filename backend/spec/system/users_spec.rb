@@ -4,7 +4,7 @@ RSpec.describe "Users", type: :system do
 
   describe "create" do
     context '無効な値の場合' do
-      it 'エラーメッセージ用の表示領域が描画されること' do
+      it 'エラーメッセージ用の表示領域が描画されること' do #▲エラーメッセージのテキストを確認する
         visit signup_path
         #▲user/newページが表示されたことを確認するのに、idが存在するか確認するのは一般的か？
         expect(page).to have_selector 'div#users_new'
@@ -17,17 +17,17 @@ RSpec.describe "Users", type: :system do
         
         expect(page).to have_selector 'div#users_new'
         expect(page).to have_selector 'div#error_explanation' 
-        expect(page).to have_selector 'div.field_with_error'
-        
       end
     end
     context "有効な値の場合" do
-      it '成功時のflashが表示され、メイン画面にリダイレクトされること' do
-        visit signup_path
-        #▲user/newページが表示されたことを確認するのに、idが存在するか確認するのは一般的か？
-        expect(page).to have_selector 'div#users_new'
+      let(:user_params) { { user: { name: "TanakaTaro",
+                                  email: "123taro@gmail.com",
+                                  password: "Taro123",
+                                  password_confirmation: "Taro123" } } }
 
-
+      it 'flashが表示されること' do #▲成功用のメッセージを確認するようにする
+        post users_path, params: user_params
+        expect(flash).to be_any
       end
     end
     

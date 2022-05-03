@@ -1,19 +1,32 @@
 require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
-  let(:user) {create(:user)}
-
   describe "POST /users #create" do
-    it '無効の値で登録されないこと' do
+    context "無効な値の場合" do
+      it '登録されないこと' do
       expect {
         post users_path, params: {user: { name: '',
                                           email: 'user@invalid.com',
                                           password: '!123abc',
                                           password_confirmation: '!!123abcd' } }
         }.to_not change(User, :count)
+      end
     end
-
-
+    context "有効な値の場合" do
+      let(:user_params) { { user: { name: "TanakaTaro",
+                                  email: "123taro@gmail.com",
+                                  password: "Taro123",
+                                  password_confirmation: "Taro123" } } }
+      it '登録されること' do
+        expect { 
+          post users_path, params: user_params
+        }.to change(User,:count).by 1
+      end
+      it 'メイン画面にリダイレクトされること' do
+        post users_path, params: user_params
+        expect(response).to redirect_to root_path
+      end
+    end
   end
 end
 
