@@ -8,8 +8,8 @@
 
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= include_gon %>
-    <%= javascript_pack_tag 'application' %>
-    <%= stylesheet_pack_tag 'application' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.0.5/remodal.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.0.5/remodal-default-theme.min.css">
@@ -24,7 +24,9 @@
     <div class='main'>
       <div id="wrapper">
         <%= render  "shared/flash" %>
-        <%= yield %>
+        <div class="container">
+          <%= yield %>
+        </div>
       </div>
     </div>
     <%= render partial: 'layouts/footer' %>
