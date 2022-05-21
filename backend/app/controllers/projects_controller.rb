@@ -15,7 +15,7 @@ class ProjectsController < ApplicationController
     @project.user_id = @user.id
     #FlashMessage.save_data_message(@project)
   end
-
+  
   def edit
     test
   end

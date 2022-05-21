@@ -22,10 +22,17 @@ RSpec.describe "Users", type: :request do
           post users_path, params: user_params
         }.to change(User,:count).by 1
       end
+
       it 'メイン画面にリダイレクトされること' do
         post users_path, params: user_params
         expect(response).to redirect_to root_path
       end
+
+      it 'ログイン状態であること' do
+        post users_path, params: user_params
+        expect(logged_in?).to be_truthy
+      end
+      
     end
   end
 end
