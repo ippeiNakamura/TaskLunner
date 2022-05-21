@@ -53,4 +53,4 @@ RSpec.configure do |config|
 
   # spec実行後のbacktrace表示を簡素化
   config.filter_rails_from_backtrace!
-end
+end 

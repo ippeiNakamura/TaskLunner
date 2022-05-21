@@ -1,15 +1,15 @@
 {
-  "application.js": "/packs-test/js/application-ad07f030aac4bdf48c12.js",
-  "application.js.map": "/packs-test/js/application-ad07f030aac4bdf48c12.js.map",
+  "application.js": "/packs-test/js/application-f37f951870e560dbf7de.js",
+  "application.js.map": "/packs-test/js/application-f37f951870e560dbf7de.js.map",
   "calendar/event.js": "/packs-test/js/calendar/event-d8f568aaafa8f8862b33.js",
   "calendar/event.js.map": "/packs-test/js/calendar/event-d8f568aaafa8f8862b33.js.map",
   "entrypoints": {
     "application": {
       "js": [
-        "/packs-test/js/application-ad07f030aac4bdf48c12.js"
+        "/packs-test/js/application-f37f951870e560dbf7de.js"
       ],
       "js.map": [
-        "/packs-test/js/application-ad07f030aac4bdf48c12.js.map"
+        "/packs-test/js/application-f37f951870e560dbf7de.js.map"
       ]
     },
     "calendar/event": {

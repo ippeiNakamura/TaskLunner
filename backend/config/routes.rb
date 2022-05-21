@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root 'tops#show'
   get '/signup', to: 'users#new'
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
     resources :users do
       resources :projects 
       resources :work_targets 
@@ -13,6 +16,4 @@ Rails.application.routes.draw do
       end
       end
     end
-  ##end      
-  resource :session,only: [:create,:destroy]
 end
