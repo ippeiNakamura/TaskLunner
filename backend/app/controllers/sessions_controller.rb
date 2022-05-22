@@ -6,9 +6,10 @@ class SessionsController < ApplicationController
     def create
         user = User.find_by(email: params[:session][:email].downcase)
         #ユーザーが存在し、かつユーザー認証ができた場合
+        
         if user && user.authenticate(params[:session][:password])
             log_in user #一時セッションに保存
-            remember user #永続的セッションの発行＆パスワードハッシュをDBに保存
+            params[:session][:remember_me] == '1' ? remember(user) : forget(user)
             redirect_to root_path
         else
             #エラーメッセージを生成し、ログイン画面表示

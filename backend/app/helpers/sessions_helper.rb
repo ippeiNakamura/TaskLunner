@@ -11,7 +11,6 @@ module SessionsHelper
         if (user_id = session[:user_id])
             #そのidのユーザーをcurrent_userを格納
             @current_user ||= User.find_by(id: user_id)
-
         #永続的セッションにidが残っている場合
         elsif (user_id = cookies.encrypted[:user_id])
             user = User.find_by(id: user_id)
@@ -23,7 +22,7 @@ module SessionsHelper
         end
     end
     
-    #ログイン状態の有無を返す
+    #ログイン状態
     def logged_in?
         !current_user.nil?
     end
