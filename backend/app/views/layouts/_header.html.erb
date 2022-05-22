@@ -14,7 +14,7 @@
     <div class='acount-list-inner'>
         <ul class='acount-list'>
         <% if logged_in? %>
-            <li class='acount-item'><%= link_to  "ログアウト", logout_path %></li>
+            <li class='acount-item'><%= link_to  "ログアウト", logout_path, method: :delete %></li>
             <li class='acount-item'><%= link_to  "プロフィール", current_user %></li>
         <% else %>
             <li class='acount-item'><%= link_to  "ログイン", login_path %></li>

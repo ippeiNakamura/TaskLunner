@@ -10,9 +10,4 @@ class Task < ApplicationRecord
             self.assumptionCostTimeFomrat = Time.at(self.assumptionCost * 60 ** 2).utc.strftime('%X') 
         end
     end
-
-    
-    
-
-.
 end

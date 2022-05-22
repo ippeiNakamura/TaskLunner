@@ -2,8 +2,11 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
    #let(:user) { build(:user,name: 'TanakaHanako',password: 'testtest123') }
-   let(:user) { User.new(name: 'TanakaHanako', email: 'test@gmail.com', password: 'testtest', password_confirmation: 'testtest' ) }
-   
+   let(:user) { User.new(name: 'Example User',
+                       email: 'user@example.com',
+                       password: 'foobar',
+                       password_confirmation: 'foobar') }
+
    describe 'nameカラム' do
       context '存在している場合' do
          it '有効であること' do
@@ -87,7 +90,12 @@ RSpec.describe User, type: :model do
             expect(user).to be_invalid
          end
       end 
-
    end
+   
+   describe '#authenticated?' do
+      it 'digestがnilならfalseを返すこと' do
+      expect(user.authenticated?('')).to be_falsy
+   end
+ end
 
 end
