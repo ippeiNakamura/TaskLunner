@@ -6,8 +6,8 @@
     </h1>
     <nav class='header-nav'>
         <ul class='header-navList'>
-            <li><%= link_to  "目標設定","#" %></li>
-            <li><%= link_to  "タスク管理", "#" %></li>
+            <li><%= link_to  "目標設定","" %></li>
+            <li><%= link_to  "タスク管理", user_tasks_path(current_user) %></li>
             <li><%= link_to  "スケジューリング","#" %></li>
         </ul>
     </nav>

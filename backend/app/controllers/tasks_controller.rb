@@ -7,13 +7,13 @@
       @assumptionday = assumptionday(@assumption_total_Cost)
       @finishDay = finish_day(@assumptionday)
       @startDay = Date.current - 3
-      @releaseDate = @user.releaseDate   
-      @completeTaskCost = complete_task_cost(@tasks)
-      @uncompleteTaskCost = uncomplete_task_cost(@tasks)
-      @limitDate = limit_date(@releaseDate)
-      @per1DayScheduleProgress = per1day_schedule_progress(@uncompleteTaskCost,@limitDate)
-      @scheduleProgress = (Date.current - @startDay).to_i * @per1DayScheduleProgress
-      @progress = progress(@scheduleProgress,@completeTaskCost)
+      #@releaseDate = @user.releaseDate   
+      #@completeTaskCost = complete_task_cost(@tasks)
+      #@uncompleteTaskCost = uncomplete_task_cost(@tasks)
+      #@limitDate = limit_date(@releaseDate)
+      #@per1DayScheduleProgress = per1day_schedule_progress(@uncompleteTaskCost,@limitDate)
+      #@scheduleProgress = (Date.current - @startDay).to_i * @per1DayScheduleProgress
+      #@progress = progress(@scheduleProgress,@completeTaskCost)
 
       #user_tasks = user.projects.includes(work_targets: [flags: :tasks])
       #render json: [tasks:tasks,assumptionTotalCost:assumption_total_Cost(tasks)]
