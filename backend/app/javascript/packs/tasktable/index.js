@@ -5,7 +5,8 @@ function test_ivent(e) {
     let table = document.getElementById('targetTable');
     let currentRow = this.parentElement.parentElement
     
-    if (e.keyCode === 13) {
+    //Enterキー押下時
+    if (e.key === 'Enter') {
         let newRow = table.insertRow(currentRow.rowIndex + 1);
         let currentTaskId = Number(this.parentElement.previousElementSibling.innerText)
         let nextTaskId = currentTaskId + 1
@@ -20,10 +21,16 @@ function test_ivent(e) {
         newCell.appendChild(inputForm);
         document.getElementById(inputForm.id).focus()
     }
-    else if (e.keyCode === 9) {
-        let currentText = this.value
-        console.log(currentText)
-        
+    //tabキー押下時
+    else if (e.key === 'Tab') {
+    //子タスクIDを付与する
+        //親タスクのIDを取得
+        let previousRow = currentRow.previousElementSibling; //前の行を取得
+        let parentId = previousRow.firstElementChild.innerText;//親Idを取得
+        //子タスクIDの生成
+        childId = parentId + ".1"
+        //子タスクIDの書き換え
+        currentRow.firstElementChild.innerText = childId
     }  
     return false;
 }

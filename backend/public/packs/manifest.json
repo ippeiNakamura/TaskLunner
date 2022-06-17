@@ -30,15 +30,15 @@
     },
     "tasktable/index": {
       "js": [
-        "/packs/js/tasktable/index-e017ba448d152b936a8b.js"
+        "/packs/js/tasktable/index-f5363985541128284449.js"
       ],
       "js.map": [
-        "/packs/js/tasktable/index-e017ba448d152b936a8b.js.map"
+        "/packs/js/tasktable/index-f5363985541128284449.js.map"
       ]
     }
   },
   "hello_vue.js": "/packs/js/hello_vue-e4d0224ab5e32532fc4a.js",
   "hello_vue.js.map": "/packs/js/hello_vue-e4d0224ab5e32532fc4a.js.map",
-  "tasktable/index.js": "/packs/js/tasktable/index-e017ba448d152b936a8b.js",
-  "tasktable/index.js.map": "/packs/js/tasktable/index-e017ba448d152b936a8b.js.map"
+  "tasktable/index.js": "/packs/js/tasktable/index-f5363985541128284449.js",
+  "tasktable/index.js.map": "/packs/js/tasktable/index-f5363985541128284449.js.map"
 }
