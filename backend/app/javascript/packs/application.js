@@ -13,4 +13,3 @@ Rails.start()
 ActiveStorage.start()
 require('jquery')
 
-

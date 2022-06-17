@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
+  get 'tasktable/index'
   root 'tops#show'
   get '/signup', to: 'users#new'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
-  get 'tasktable', to: 'tasktable/show'
     resources :users do
       resources :projects 
       resources :work_targets 
