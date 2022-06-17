@@ -7,9 +7,11 @@ function test_ivent(e) {
     
     //Enterキー押下時
     if (e.key === 'Enter') {
-        let newRow = table.insertRow(currentRow.rowIndex + 1);
-        let currentTaskId = Number(this.parentElement.previousElementSibling.innerText)
-        let nextTaskId = currentTaskId + 1
+        let newRow = table.insertRow(currentRow.rowIndex + 1); //行の追加
+        let currentTaskId = currentRow.firstElementChild.innerText //現在のidを取得
+        //！！！
+        let nextTaskId = Number + 1 //次のidを生成
+        console.log(currentTaskId)
         let newCell = newRow.insertCell();
         let newText = document.createTextNode(nextTaskId);
         newCell.appendChild(newText);
